@@ -4,10 +4,14 @@ import {Card} from 'primereact/card'
 import {Button} from 'primereact/button'
 import {InputText} from 'primereact/inputtext'
 import 'primeflex/primeflex.css';
-import {Redirect} from 'react-router-dom'
+import axios from 'axios';
 
 class Login extends Component{
 
+
+    componentDidMount(){     
+       
+    }
 
     constructor(props){
         super(props);
@@ -20,12 +24,42 @@ class Login extends Component{
     login=(event)=>{
      event.preventDefault();   
      
-     if(this.state.login_user_id==="arjun430" && this.state.password==="test123"){
-      window.location.href = "/dashboard";
-     }
-    else {
-        window.location.href = "/login";
-    }
+     
+
+    if(this.state.login_user_id==='')
+        alert("Please Enter UserID")
+    else if(this.state.password==='')
+        alert("Please Enter Password")
+    else{
+                const user = {
+                    "email":this.state.login_user_id,
+                    "password":this.state.password
+                };
+
+                axios.post("http://localhost:3000/app/user/signin",user).then(res=>{
+                
+                // console.log("> :"+res.data.result); 
+                // console.log("> :"+res.data.user[0].email);
+                // alert("email = "+res.data.user[0].email);
+
+                if(this.state.login_user_id===res.data.user[0].login_user_id && this.state.password===res.data.user[0].password){
+                    window.location.href = "/dashboard";
+                }
+                else {
+                    alert("Invalid UserId & Password");
+                    window.location.href = "/login";
+                }
+
+
+            }).catch(err=>{
+
+                alert("Invalid UserId & Password");
+                window.location.href = "/login";
+            })
+   
+
+
+       } 
 
 
     }
@@ -45,9 +79,9 @@ class Login extends Component{
             <div align="center">
             
             <Card title="Admin Login" style={{ width: '25em' }} footer={footer} header={header}>
-                <p className="p-m-0" style={{lineHeight: '1.5'}}>
                 
-                 <form onSubmit={this.login}>
+                
+                 <form action="#" onSubmit={this.login}>
                         <div className="p-fluid">
                             <div className="p-field">
                                 <label htmlFor="UserId">UserID</label>
@@ -61,7 +95,7 @@ class Login extends Component{
                         </div>
                 </form>
 
-                </p>
+                
             </Card>
             </div>
          
