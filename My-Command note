@@ -1,0 +1,8 @@
+
+ccr create src/Home -> To create component
+
+npm i  react-router-dom -> install router
+
+npm i -g create-components-react -> install create comppnent package so that we can use ccr command
+
+npm install react-bootstrap bootstrap -> install bootstrap
