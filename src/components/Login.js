@@ -5,17 +5,20 @@ import {Button} from 'primereact/button'
 import {InputText} from 'primereact/inputtext'
 import 'primeflex/primeflex.css';
 import axios from 'axios';
+import { Collapse } from 'bootstrap'
 
 class Login extends Component{
-
+    
 
     componentDidMount(){     
-       
+        // const s ={process.env.REACT_APP_API_URL} 
+        
     }
 
     constructor(props){
         super(props);
         this.state={
+            
             login_user_id:'',
             password:''
         }
@@ -36,8 +39,8 @@ class Login extends Component{
                     "password":this.state.password
                 };
 
-                axios.post("http://localhost:3000/app/user/signin",user).then(res=>{
-                
+                // axios.post("http://localhost:3000/app/user/signin",user).then(res=>{
+                axios.post("http://www.gilpil.com/app/user/signin",user).then(res=>{
                 // console.log("> :"+res.data.result); 
                 // console.log("> :"+res.data.user[0].email);
                 // alert("email = "+res.data.user[0].email);

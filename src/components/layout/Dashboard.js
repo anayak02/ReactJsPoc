@@ -4,6 +4,9 @@ class Dashboard extends Component{
 
     componentDidMount(){
 
+        // const s = {process.env.REACT_APP_API_URL} 
+        // console.log("env ="+s);
+
     //  fetch("http://localhost:3000/app/user/getAllUserDetails")
     //   .then(res => res.json())
     //   .then(
